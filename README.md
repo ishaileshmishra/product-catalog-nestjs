@@ -66,9 +66,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Develoepr - [Shailesh Mishra](https://kamilmysliwiec.com)
-- Website - [https://ishaileshmishra.dev](https://nestjs.com/)
-- Twitter - [@ishailesmishra](https://twitter.com/nestframework)
+- Develoepr - [Shailesh Mishra](https://ishaileshmishra.dev)
+- Website - [https://ishaileshmishra.dev](https://ishaileshmishra.dev)
+- Twitter - [@ishailesmishra](https://twitter.com/ishailesmishra)
 
 ## License
 
