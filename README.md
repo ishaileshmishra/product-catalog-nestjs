@@ -72,6 +72,28 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Working in memory CRUD data
 
+screenshots:
+
+## app modeule
+
+![app modeule](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/app_module.png?raw=true)
+
+## product_controller
+
+![product_controller](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_controller.png?raw=true)
+
+## product_module
+
+![product_module](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/app_module.png?raw=true)
+
+## product_service
+
+![product_service](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_service.png?raw=true)
+
+## product_model
+
+![product_model](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_model.png?raw=true)
+
 ## License
 
   Nest is [MIT licensed](LICENSE).
