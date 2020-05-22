@@ -60,40 +60,83 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Working in memory CRUD data
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**Language**: TypeScript and pure JavaScript
 
-## Stay in touch
+**Prerequisites**: Please make sure that Node.js (>= 10.13.0) is installed on your operating system.
 
-- Develoepr - [Shailesh Mishra](https://ishaileshmishra.dev)
-- Website - [https://ishaileshmishra.dev](https://ishaileshmishra.dev)
-- Twitter - [@ishailesmishra](https://twitter.com/ishailesmishra)
+**Setup**:
 
-Working in memory CRUD data
+```bash
+  $ npm i -g @nestjs/cli
+  $ nest new product-catalog
+```
 
-screenshots:
+The project directory will be created, node modules and a few other boilerplate files will be installed, and a src/ directory will be created and populated with several core files.
 
-## app module
+
+src
+
+  -- app.controller.ts
+
+  -- app.module.ts
+
+  -- main.ts
+
+-------------------------------
+
+**Core files**
+
+**app.controller.ts**: Basic controller sample with a single route.
+
+Controllers are responsible for handling incoming requests and returning responses to the client
+
+**app.module.ts**: The root module of the application.
+
+**main.ts**: The entry file of the application which uses the core function NestFactory to create a Nest application instance.
+
+To create a Nest application instance, we use the core NestFactory class. NestFactory exposes a few static methods that allow creating an application instance. The create() method returns an application object, which fulfills the INestApplication interface
+
+**Provider**:
+
+Providers are a fundamental concept in Nest. Many of the basic Nest classes may be treated as a provider – services, repositories, factories, helpers, and so on
+The main idea of a provider is that it can inject dependencies; this means objects can create various relationships with each other
+
+**Services**:
+
+This service will be responsible for data storage and retrieval, and is designed to be used by the ProductController, so it's a good candidate to be defined as a provider. Thus, we decorate the class with @Injectable().
+
+
+-----------------------------
+
+
+
+
+
+
+
+### app module
+Don't forget to add Product module to the app module's import array
 
 ![app modeule](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/app_module.png?raw=true)
 
-## product_controller
+### product_controller
 
 ![product_controller](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_controller.png?raw=true)
 
-## products_module
+### products_module
 
 ![product_module](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/products_module.png?raw=true)
 
-## product_service
+### product_service
 
 ![product_service](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_service.png?raw=true)
 
-## product_model
+### product_model
 
 ![product_model](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_model.png?raw=true)
 
-## License
+### License
 
   Nest is [MIT licensed](LICENSE).
