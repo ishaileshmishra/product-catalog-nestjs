@@ -74,7 +74,7 @@ Working in memory CRUD data
 
 screenshots:
 
-## app modeule
+## app module
 
 ![app modeule](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/app_module.png?raw=true)
 
@@ -82,9 +82,9 @@ screenshots:
 
 ![product_controller](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_controller.png?raw=true)
 
-## product_module
+## products_module
 
-![product_module](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/app_module.png?raw=true)
+![product_module](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/products_module.png?raw=true)
 
 ## product_service
 
