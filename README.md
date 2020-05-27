@@ -7,18 +7,12 @@
 [linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
 [linux-url]: https://travis-ci.org/nestjs/nest
   
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
+<p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
+<p align="center">
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
 <a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
 <a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-
 <a href="https://twitter.com/ishailesmishra"><img src="https://img.shields.io/twitter/follow/ishailesmishra.svg?style=social&label=Follow"></a>
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
@@ -69,24 +63,25 @@ $ npm run test:cov
 **Setup**:
 
 ```bash
+  # To scaffold the project with the Nest CLI, run the following commands
   $ npm i -g @nestjs/cli
+  
+  # Creating a product-catalog project with the Nest CLI
   $ nest new product-catalog
 ```
 
 The project directory will be created, node modules and a few other boilerplate files will be installed, and a src/ directory will be created and populated with several core files.
 
+```bash
+  src
+    > products
+    -app.controller.ts
+    -app.module.ts
+    -app.service.ts
+    -main.ts
+```
 
-src
-
-  -- app.controller.ts
-
-  -- app.module.ts
-
-  -- main.ts
-
--------------------------------
-
-**Core files**
+## **Core files**
 
 **app.controller.ts**: Basic controller sample with a single route.
 
@@ -107,35 +102,9 @@ The main idea of a provider is that it can inject dependencies; this means objec
 
 This service will be responsible for data storage and retrieval, and is designed to be used by the ProductController, so it's a good candidate to be defined as a provider. Thus, we decorate the class with @Injectable().
 
-
------------------------------
-
-
-
-
-
-
-
 ### app module
+
 Don't forget to add Product module to the app module's import array
-
-![app modeule](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/app_module.png?raw=true)
-
-### product_controller
-
-![product_controller](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_controller.png?raw=true)
-
-### products_module
-
-![product_module](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/products_module.png?raw=true)
-
-### product_service
-
-![product_service](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_service.png?raw=true)
-
-### product_model
-
-![product_model](https://github.com/ishaileshmishra/product_catalog_nestjs/blob/master/assets/product_model.png?raw=true)
 
 ### License
 
