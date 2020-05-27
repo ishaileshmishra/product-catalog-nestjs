@@ -83,24 +83,13 @@ The project directory will be created, node modules and a few other boilerplate 
 
 ## **Core files**
 
-**app.controller.ts**: Basic controller sample with a single route.
-
-Controllers are responsible for handling incoming requests and returning responses to the client
-
+**app.controller.ts**: Basic controller sample with a single route. Controllers are responsible for handling incoming requests and returning responses to the client
 **app.module.ts**: The root module of the application.
+**Services**: This service will be responsible for data storage and retrieval, and is designed to be used by the ProductController, so it's a good candidate to be defined as a provider. Thus, we decorate the class with @Injectable().
+**main.ts**: The entry file of the application which uses the core function NestFactory to create a Nest application instance. To create a Nest application instance, we use the core NestFactory class. NestFactory exposes a few static methods that allow creating an application instance. The create() method returns an application object, which fulfills the INestApplication interface
 
-**main.ts**: The entry file of the application which uses the core function NestFactory to create a Nest application instance.
-
-To create a Nest application instance, we use the core NestFactory class. NestFactory exposes a few static methods that allow creating an application instance. The create() method returns an application object, which fulfills the INestApplication interface
-
-**Provider**:
-
-Providers are a fundamental concept in Nest. Many of the basic Nest classes may be treated as a provider – services, repositories, factories, helpers, and so on
+**Provider**: Providers are a fundamental concept in Nest. Many of the basic Nest classes may be treated as a provider – services, repositories, factories, helpers, and so on
 The main idea of a provider is that it can inject dependencies; this means objects can create various relationships with each other
-
-**Services**:
-
-This service will be responsible for data storage and retrieval, and is designed to be used by the ProductController, so it's a good candidate to be defined as a provider. Thus, we decorate the class with @Injectable().
 
 ### app module
 
