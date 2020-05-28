@@ -54,8 +54,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Working in memory CRUD data
-
 **Language**: TypeScript and pure JavaScript
 
 **Prerequisites**: Please make sure that Node.js (>= 10.13.0) is installed on your operating system.
@@ -97,6 +95,15 @@ The main idea of a provider is that it can inject dependencies; this means objec
 ### app module
 
 Don't forget to add Product module to the app module's import array
+
+## CRUD Operation using [Mongo DB]
+
+```bash
+install mongoose by running below command in your terminal in your project dir
+
+npm install --save mongoose @nestjs/mongoose
+npm install --save-dev @types/mongoose
+```
 
 ### License
 
