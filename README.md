@@ -105,6 +105,6 @@ npm install --save mongoose @nestjs/mongoose
 npm install --save-dev @types/mongoose
 ```
 
-### License
+### See the terminal
 
-  Nest is [MIT licensed](LICENSE).
+![Test Image 4](https://github.com/ishaileshmishra/product-catalog/blob/master/assets/output_terminal.png?raw=true)
