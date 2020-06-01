@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.model';
 import { Model } from 'mongoose';
+import { GetProductsFilterDto } from './dto/get.products.filter.dto';
 
 // This service will be responsible for data storage and retrieval,
 // and is designed to be used by the ProductsController,
@@ -35,6 +36,10 @@ export class ProductsService {
     };
   }
 
+  // async getProductByFilters( filterDTO: GetProductsFilterDto){
+  //    const products = await this.productModel.
+  // }
+
   // update a product
   async updateProduct(
     productId: string,
@@ -59,6 +64,7 @@ export class ProductsService {
   // delete a product
   async deleteProduct(productId: string) {
     const result = await this.productModel.deleteOne({ _id: productId }).exec();
+    console.log('result', result);
     if (result.n === 0) {
       throw new NotFoundException('could not found product');
     }

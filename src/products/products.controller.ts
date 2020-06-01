@@ -7,12 +7,17 @@ import {
   Param,
   Patch,
   Delete,
+  UsePipes,
+  ValidationPipe,
+  Query,
 } from '@nestjs/common';
 // import ProductsService that has instance in the constructor of the
 // ProductController to communicate with the service class that contains the business logic for the product module.
 import { ProductsService } from './products.service';
 // Type of the data to pass/retrieve throughout communication
 import { CreateProductDto } from './dto/create.product.dto';
+import { pipe } from 'rxjs';
+import { IsNotEmpty } from 'class-validator';
 
 // The @Controller() decorator, which is required to define a basic controller.
 // with a products entity under the route /products.
@@ -24,8 +29,13 @@ export class ProductController {
   constructor(private readonly productService: ProductsService) {}
 
   @Get()
-  async getProducts() {
-    return await this.productService.getProducts();
+  async getProducts(@Query() filterDTO: CreateProductDto) {
+    if (Object.keys(filterDTO).length) {
+      console.log('query applied: ', filterDTO);
+      // return await this.productService.getProductByFilters(filterDTO);
+    } else {
+      return await this.productService.getProducts();
+    }
   }
 
   @Get('/:id')
@@ -34,6 +44,7 @@ export class ProductController {
   }
 
   @Post()
+  @UsePipes(ValidationPipe)
   async createProduct(@Body() productDto: CreateProductDto) {
     const { title, description, price } = productDto;
     const generatedId = await this.productService.createProduct(
@@ -51,7 +62,12 @@ export class ProductController {
     @Body('description') description: string,
     @Body('price') price: number,
   ) {
-    const productId = await this.productService.updateProduct(prodId, title, description, price);
+    const productId = await this.productService.updateProduct(
+      prodId,
+      title,
+      description,
+      price,
+    );
     return productId;
   }
 
