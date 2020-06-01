@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.model';
 import { Model } from 'mongoose';
-import { GetProductsFilterDto } from './dto/get.products.filter.dto';
 
 // This service will be responsible for data storage and retrieval,
 // and is designed to be used by the ProductsController,
