@@ -3,37 +3,29 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.model';
 import { Model } from 'mongoose';
 
+// This service will be responsible for data storage and retrieval,
+// and is designed to be used by the ProductsController,
+// so it's a good candidate to be defined as a provider. Thus, we decorate the class with @Injectable().
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectModel('Product') private readonly productModel: Model<Product>,
   ) {}
 
-  // creates new product
-  async insertProduct(title: string, description: string, price: number) {
-    const newProduct = new this.productModel({
-      title,
-      description,
-      price,
-    });
-    const result = await newProduct.save();
-    console.log(result);
-    return result.id as string;
-  }
-
   // gets all products
-  async fetchProducts() {
+  async getProducts() {
     const products = await this.productModel.find().exec();
-    return products.map(prod => ({
-      id: prod.id,
-      title: prod.title,
-      description: prod.description,
-      price: prod.price,
+    return products.map(product => ({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
     }));
   }
 
   // gets single product by id
-  async fetchSingleProducts(productId: string) {
+  async getProductById(productId: string) {
+    // Validate whether requested productId is available in the database otherwise throw an exception
     const product = await this.findProduct(productId);
     return {
       id: product.id,
@@ -44,7 +36,7 @@ export class ProductsService {
   }
 
   // update a product
-  async patchProduct(
+  async updateProduct(
     productId: string,
     title: string,
     description: string,
@@ -61,6 +53,7 @@ export class ProductsService {
       updatedProduct.price = price;
     }
     updatedProduct.save();
+    return productId;
   }
 
   // delete a product
@@ -71,7 +64,19 @@ export class ProductsService {
     }
   }
 
+  // creates new product
+  async createProduct(title: string, description: string, price: number) {
+    const newProduct = new this.productModel({
+      title,
+      description,
+      price,
+    });
+    const result = await newProduct.save();
+    return result;
+  }
+
   // private common function to find the product
+  // Validate whether requested productId is available in the database otherwise throw an exception
   private async findProduct(id: string): Promise<Product> {
     let product: Product;
     try {
