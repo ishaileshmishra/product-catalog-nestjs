@@ -16,8 +16,6 @@ import {
 import { ProductsService } from './products.service';
 // Type of the data to pass/retrieve throughout communication
 import { CreateProductDto } from './dto/create.product.dto';
-import { pipe } from 'rxjs';
-import { IsNotEmpty } from 'class-validator';
 
 // The @Controller() decorator, which is required to define a basic controller.
 // with a products entity under the route /products.
