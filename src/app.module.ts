@@ -2,12 +2,15 @@
 // Twitter: ishailesmishra
 // Facebool: ishaileshmishra
 
-
 // Module is a class annotated with a @Module() decorator.
 // The @Module() decorator provides metadata that Nest makes use of to organize the application structure.
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './products/products.module';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { ProductController } from './products/products.controller';
+import { ProductsService } from './products/products.service';
 
 // Add your array of modules in the section of impots.
 @Module({
@@ -19,10 +22,10 @@ import { ProductsModule } from './products/products.module';
       'mongodb+srv://shaileshmishra:VEvKCG4zYt9r7dfX@cluster0-lmmr1.mongodb.net/product-catalog-nestjs?retryWrites=true&w=majority',
     ),
   ],
+  controllers: [ProductController, AuthController],
+  providers: [ProductsService, AuthService],
 })
 export class AppModule {}
-
-
 
 // =========== Understand Core Concepts ===========
 // providers => the providers that will be instantiated by the Nest injector and that may be shared at least across this module

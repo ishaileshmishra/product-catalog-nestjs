@@ -1,6 +1,5 @@
 // Creating DTO is good practice to create
 // new variable or remove a variable easily
-
 import { IsNotEmpty, IsIn } from 'class-validator';
 import { DeliveryStatus } from '../product.model';
 import { Optional } from '@nestjs/common';
