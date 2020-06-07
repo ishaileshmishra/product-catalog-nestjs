@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
 
-export enum Status {
+export enum DeliveryStatus {
   ORDERED = 'ORDERED',
-  SHIPPED = 'SHIPPED',
+  IN_PROGRESS = 'IN_PROGRESS',
   DELIVERED = 'DELIVERED',
 }
 
@@ -17,4 +17,5 @@ export interface Product extends mongoose.Document {
   title: string;
   description: string;
   price: number;
+  status: DeliveryStatus;
 }

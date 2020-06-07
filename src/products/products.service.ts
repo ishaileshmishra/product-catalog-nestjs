@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.model';
 import { Model } from 'mongoose';
+import { CreateProductDto } from './dto/create.product.dto';
 
 // This service will be responsible for data storage and retrieval,
 // and is designed to be used by the ProductsController,
@@ -23,6 +24,25 @@ export class ProductsService {
     }));
   }
 
+  async getProductsWithFilters(filterDto: CreateProductDto) {
+    const { title, description, price } = filterDto;
+    let products = await this.getProducts();
+    if (title) {
+      products = products.filter(product => product.title === title);
+    }
+    if (description) {
+      products = products.filter(product => product.description == description);
+    }
+    if (price) {
+      products = products.filter(product => product.price == price);
+    }
+    return products.map(product => ({
+      title: product.title,
+      description: product.description,
+      price: product.price,
+    }));
+  }
+
   // gets single product by id
   async getProductById(productId: string) {
     // Validate whether requested productId is available in the database otherwise throw an exception
@@ -35,17 +55,9 @@ export class ProductsService {
     };
   }
 
-  // async getProductByFilters( filterDTO: GetProductsFilterDto){
-  //    const products = await this.productModel.
-  // }
-
   // update a product
-  async updateProduct(
-    productId: string,
-    title: string,
-    description: string,
-    price: number,
-  ) {
+  async updateProduct(productId: string, productDTO: CreateProductDto) {
+    const { title, description, price, status } = productDTO;
     const updatedProduct = await this.findProduct(productId);
     if (title) {
       updatedProduct.title = title;
@@ -55,6 +67,9 @@ export class ProductsService {
     }
     if (price) {
       updatedProduct.price = price;
+    }
+    if (status) {
+      updatedProduct.status = status;
     }
     updatedProduct.save();
     return productId;
@@ -70,14 +85,16 @@ export class ProductsService {
   }
 
   // creates new product
-  async createProduct(title: string, description: string, price: number) {
+  async createProduct(productDto: CreateProductDto) {
+    const { title, description, price, status } = productDto;
     const newProduct = new this.productModel({
       title,
       description,
       price,
+      status,
     });
     const result = await newProduct.save();
-    return result;
+    return result.id;
   }
 
   // private common function to find the product

@@ -28,10 +28,12 @@ export class ProductController {
 
   @Get()
   async getProducts(@Query() filterDTO: CreateProductDto) {
+    console.log(filterDTO);
     if (Object.keys(filterDTO).length) {
-      console.log('query applied: ', filterDTO);
-      // return await this.productService.getProductByFilters(filterDTO);
+      // Get Queries params using the decorator @Query
+      return await this.productService.getProductsWithFilters(filterDTO);
     } else {
+      // Get all the products
       return await this.productService.getProducts();
     }
   }
@@ -44,27 +46,18 @@ export class ProductController {
   @Post()
   @UsePipes(ValidationPipe)
   async createProduct(@Body() productDto: CreateProductDto) {
-    const { title, description, price } = productDto;
-    const generatedId = await this.productService.createProduct(
-      title,
-      description,
-      price,
-    );
-    return { id: generatedId };
+    const productId = await this.productService.createProduct(productDto);
+    return { id: productId };
   }
 
   @Patch('/:id')
   async updateProduct(
     @Param('id') prodId: string,
-    @Body('title') title: string,
-    @Body('description') description: string,
-    @Body('price') price: number,
+    @Body() productDto: CreateProductDto,
   ) {
     const productId = await this.productService.updateProduct(
       prodId,
-      title,
-      description,
-      price,
+      productDto,
     );
     return productId;
   }
