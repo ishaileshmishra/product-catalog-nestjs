@@ -9,8 +9,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './products/products.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
-import { ProductController } from './products/products.controller';
-import { ProductsService } from './products/products.service';
 
 // Add your array of modules in the section of impots.
 @Module({
@@ -22,8 +20,8 @@ import { ProductsService } from './products/products.service';
       'mongodb+srv://shaileshmishra:VEvKCG4zYt9r7dfX@cluster0-lmmr1.mongodb.net/product-catalog-nestjs?retryWrites=true&w=majority',
     ),
   ],
-  controllers: [ProductController, AuthController],
-  providers: [ProductsService, AuthService],
+  controllers: [AuthController],
+  providers: [AuthService],
 })
 export class AppModule {}
 
