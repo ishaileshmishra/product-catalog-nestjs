@@ -1,13 +1,10 @@
+// We are going to use this DTO for both login and Signup
 import { IsNotEmpty } from 'class-validator';
-//import { Passport } from '@nestjs/passport'
 
-export class CreateUserDto {
+export class AuthCredentialDTO {
   @IsNotEmpty()
   username: string;
 
   @IsNotEmpty()
   password: string;
-
-  @IsNotEmpty()
-  salt: string;
 }

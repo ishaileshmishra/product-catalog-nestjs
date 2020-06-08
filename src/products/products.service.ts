@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.model';
 import { Model } from 'mongoose';
-import { CreateProductDto } from './dto/create.product.dto';
+import { ProductDto } from './dto/create.prooduct.dto';
 
 // This service will be responsible for data storage and retrieval,
 // and is designed to be used by the ProductsController,
@@ -24,7 +24,7 @@ export class ProductsService {
     }));
   }
 
-  async getProductsWithFilters(filterDto: CreateProductDto) {
+  async getProductsWithFilters(filterDto: ProductDto) {
     const { title, description, price } = filterDto;
     let products = await this.getProducts();
     if (title) {
@@ -56,7 +56,7 @@ export class ProductsService {
   }
 
   // update a product
-  async updateProduct(productId: string, productDTO: CreateProductDto) {
+  async updateProduct(productId: string, productDTO: ProductDto) {
     const { title, description, price, status } = productDTO;
     const updatedProduct = await this.findProduct(productId);
     if (title) {
@@ -85,7 +85,7 @@ export class ProductsService {
   }
 
   // creates new product
-  async createProduct(productDto: CreateProductDto) {
+  async createProduct(productDto: ProductDto) {
     const { title, description, price, status } = productDto;
     const newProduct = new this.productModel({
       title,

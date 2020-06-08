@@ -14,8 +14,8 @@ import {
 // import ProductsService that has instance in the constructor of the
 // ProductController to communicate with the service class that contains the business logic for the product module.
 import { ProductsService } from './products.service';
+import { ProductDto } from './dto/create.prooduct.dto';
 // Type of the data to pass/retrieve throughout communication
-import { CreateProductDto } from './dto/create.product.dto';
 
 // The @Controller() decorator, which is required to define a basic controller.
 // with a products entity under the route /products.
@@ -27,7 +27,7 @@ export class ProductController {
   constructor(private readonly productService: ProductsService) {}
 
   @Get()
-  async getProducts(@Query() filterDTO: CreateProductDto) {
+  async getProducts(@Query() filterDTO: ProductDto) {
     console.log(filterDTO);
     if (Object.keys(filterDTO).length) {
       // Get Queries params using the decorator @Query
@@ -45,7 +45,7 @@ export class ProductController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createProduct(@Body() productDto: CreateProductDto) {
+  async createProduct(@Body() productDto: ProductDto) {
     const productId = await this.productService.createProduct(productDto);
     return { id: productId };
   }
@@ -53,7 +53,7 @@ export class ProductController {
   @Patch('/:id')
   async updateProduct(
     @Param('id') prodId: string,
-    @Body() productDto: CreateProductDto,
+    @Body() productDto: ProductDto,
   ) {
     const productId = await this.productService.updateProduct(
       prodId,
