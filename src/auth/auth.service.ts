@@ -2,12 +2,16 @@ import {
   Injectable,
   BadRequestException,
   ConflictException,
+  UnauthorizedException,
+  Body,
+  NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './user.model';
 import { AuthCredentialDTO } from './dto/auth.credential.dto';
 import * as bcrypt from 'bcrypt';
+import passport = require('passport');
 
 @Injectable()
 export class AuthService {
@@ -39,21 +43,18 @@ export class AuthService {
     return bcrypt.hash(password, salt);
   }
 
-  // async validateUserPassword(@Body() credentialDTO: AuthCredentialDTO): Promise<string> {
-  //   const { username, password } = credentialDTO;
-  //   const user = await this.users.findOne({ username: username }).exec();
-  //   if (user && user.validatePassword(password)) {
-  //     return user.username;
-  //   }else{
-  //     return null;
-  //   }
-  // }
-
-  async signIn(credentialDTO: AuthCredentialDTO) {
+  async signIn(credentialDTO: AuthCredentialDTO): Promise<string> {
     const { username, password } = credentialDTO;
-    console.log(username);
-    console.log(password);
-    const result = this.users.findOne({ username });
-    console.log(result);
+    const user = await this.users.findOne({ username: username }).exec();
+    if (user) {
+      const hash = await bcrypt.hash(password, user.salt);
+      if (hash === user.password) {
+        return user.username;
+      } else {
+        return null;
+      }
+    } else {
+      throw new NotFoundException('username not found');
+    }
   }
 }
