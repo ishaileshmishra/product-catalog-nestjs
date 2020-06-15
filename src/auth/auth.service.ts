@@ -51,7 +51,7 @@ export class AuthService {
       if (hash === user.password) {
         return user.username;
       } else {
-        return null;
+        throw new UnauthorizedException('Invalid Credentials');
       }
     } else {
       throw new NotFoundException('username not found');
