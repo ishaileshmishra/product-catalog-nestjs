@@ -12,17 +12,19 @@ import { User } from './user.model';
 import { AuthCredentialDTO } from './dto/auth.credential.dto';
 import * as bcrypt from 'bcrypt';
 import passport = require('passport');
+import { JwtService } from '@nestjs/jwt';
+import { JwtPayload } from './jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel('User') private readonly users: Model<User>) {}
+  constructor(
+    @InjectModel('User') private readonly users: Model<User>,
+    private jwtService: JwtService,
+  ) {}
 
   async signUp(credentialDTO: AuthCredentialDTO): Promise<void> {
     const { username, password } = credentialDTO;
     const salt = await bcrypt.genSalt();
-    // salt password => console.log(salt);
-    // const hashedPassword = await this.hashPassword(password, salt);
-    // hash password => console.log(hashedPassword);
     const exist = await this.users.findOne({ username: username }).exec();
     if (exist) {
       throw new BadRequestException('Username Already Exists :(');
@@ -43,18 +45,23 @@ export class AuthService {
     return bcrypt.hash(password, salt);
   }
 
-  async signIn(credentialDTO: AuthCredentialDTO): Promise<string> {
+  async signIn(
+    credentialDTO: AuthCredentialDTO,
+  ): Promise<{ accessToken: string }> {
     const { username, password } = credentialDTO;
     const user = await this.users.findOne({ username: username }).exec();
     if (user) {
       const hash = await bcrypt.hash(password, user.salt);
-      if (hash === user.password) {
-        return user.username;
-      } else {
+      if (hash != user.password) {
         throw new UnauthorizedException('Invalid Credentials');
       }
     } else {
-      throw new NotFoundException('username not found');
+      throw new NotFoundException('username doest not exist');
     }
+
+    const payload: JwtPayload = { username };
+    const accessToken = await this.jwtService.sign(payload);
+    //return user.username;
+    return { accessToken };
   }
 }
