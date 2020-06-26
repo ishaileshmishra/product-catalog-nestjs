@@ -11,14 +11,12 @@ import {
   ValidationPipe,
   Query,
 } from '@nestjs/common';
-// import ProductsService that has instance in the constructor of the
-// ProductController to communicate with the service class that contains the business logic for the product module.
+
 import { ProductsService } from './products.service';
 import { ProductDto } from './dto/create.prooduct.dto';
-// Type of the data to pass/retrieve throughout communication
+import { User } from 'src/auth/user.model';
+import { GetUser } from 'src/auth/get-user.decorator';
 
-// The @Controller() decorator, which is required to define a basic controller.
-// with a products entity under the route /products.
 @Controller('products')
 export class ProductController {
   // [Example of Dependency injection]
@@ -28,7 +26,6 @@ export class ProductController {
 
   @Get()
   async getProducts(@Query() filterDTO: ProductDto) {
-    console.log(filterDTO);
     if (Object.keys(filterDTO).length) {
       // Get Queries params using the decorator @Query
       return await this.productService.getProductsWithFilters(filterDTO);
@@ -45,8 +42,8 @@ export class ProductController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createProduct(@Body() productDto: ProductDto) {
-    const productId = await this.productService.createProduct(productDto);
+  async createProduct(@Body() productDto: ProductDto, @GetUser() user: User) {
+    const productId = await this.productService.createProduct(productDto, user);
     return { id: productId };
   }
 

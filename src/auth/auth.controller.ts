@@ -4,11 +4,12 @@ import {
   Body,
   ValidationPipe,
   UseGuards,
-  Req,
 } from '@nestjs/common';
 import { AuthCredentialDTO } from './dto/auth.credential.dto';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
+import { User } from './user.model';
+import { GetUser } from './get-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -31,7 +32,7 @@ export class AuthController {
 
   @Post('/test')
   @UseGuards(AuthGuard())
-  test(@Req() req) {
-    console.log(req);
+  test(@GetUser() user: User) {
+    console.log(user);
   }
 }
