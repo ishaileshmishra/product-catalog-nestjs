@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { config } from './config';
 
 // Add your array of modules in the section of impots.
 @Module({
@@ -20,6 +21,7 @@ import { ConfigModule } from '@nestjs/config';
       // envFilePath: '.development.env', // Custom env file path
       // ignoreEnvFile: true, // Disable env variables loading
       isGlobal: true, // Use module globally
+      load: [config],
     }),
   ],
 })
