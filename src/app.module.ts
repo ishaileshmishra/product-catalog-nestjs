@@ -16,7 +16,11 @@ import { ConfigModule } from '@nestjs/config';
       'mongodb+srv://shaileshmishra:VEvKCG4zYt9r7dfX@cluster0-lmmr1.mongodb.net/product-catalog-nestjs?retryWrites=true&w=majority',
     ),
     AuthModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      // envFilePath: '.development.env', // Custom env file path
+      // ignoreEnvFile: true, // Disable env variables loading
+      isGlobal: true, // Use module globally
+    }),
   ],
 })
 export class AppModule {}
