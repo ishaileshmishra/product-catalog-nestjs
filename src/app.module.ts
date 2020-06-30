@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 // Add your array of modules in the section of impots.
 @Module({
@@ -15,6 +16,7 @@ import { AuthModule } from './auth/auth.module';
       'mongodb+srv://shaileshmishra:VEvKCG4zYt9r7dfX@cluster0-lmmr1.mongodb.net/product-catalog-nestjs?retryWrites=true&w=majority',
     ),
     AuthModule,
+    ConfigModule.forRoot(),
   ],
 })
 export class AppModule {}

@@ -14,8 +14,8 @@ import {
 
 import { ProductsService } from './products.service';
 import { ProductDto } from './dto/create.prooduct.dto';
-import { User } from 'src/auth/user.model';
-import { GetUser } from 'src/auth/get-user.decorator';
+// import { User } from 'src/auth/user.model';
+// import { GetUser } from 'src/auth/get-user.decorator';
 
 @Controller('products')
 export class ProductController {
@@ -42,8 +42,8 @@ export class ProductController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createProduct(@Body() productDto: ProductDto, @GetUser() user: User) {
-    const productId = await this.productService.createProduct(productDto, user);
+  async createProduct(@Body() productDto: ProductDto) {
+    const productId = await this.productService.createProduct(productDto);
     return { id: productId };
   }
 

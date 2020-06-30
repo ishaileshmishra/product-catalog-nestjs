@@ -5,7 +5,6 @@ import { ProductsService } from './products.service';
 import { ProductSchema } from './product.model';
 
 @Module({
-  // Mongoose, the most popular MongoDB object modeling tool
   imports: [
     MongooseModule.forFeature([{ name: 'Product', schema: ProductSchema }]),
   ],

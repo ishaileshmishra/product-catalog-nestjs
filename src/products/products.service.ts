@@ -3,12 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.model';
 import { Model } from 'mongoose';
 import { ProductDto } from './dto/create.prooduct.dto';
-import { User } from 'src/auth/user.model';
+//import { User } from 'src/auth/user.model';
 
-// This service will be responsible for business logic,
-// and is designed to be used by the ProductsController,
-// so it's a good candidate to be defined as a provider.
-// Thus, we decorate the class with @Injectable().
 @Injectable()
 export class ProductsService {
   constructor(
@@ -87,9 +83,9 @@ export class ProductsService {
   }
 
   // creates new product
-  async createProduct(productDto: ProductDto, user: User) {
+  async createProduct(productDto: ProductDto) {
     const { title, description, price, status } = productDto;
-    const {} = user;
+    //const {} = user;
     const newProduct = new this.productModel({
       title,
       description,
