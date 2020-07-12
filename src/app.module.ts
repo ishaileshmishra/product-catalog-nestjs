@@ -13,8 +13,10 @@ import { config } from './config';
     ProductsModule,
     // get the root link from https://cloud.mongodb.com/
     // find the  username and password from the secuirity section and Network Access Tab
+    // Add process.env.MONGO_URI from .env file
     MongooseModule.forRoot(
       'mongodb+srv://shaileshmishra:VEvKCG4zYt9r7dfX@cluster0-lmmr1.mongodb.net/product-catalog-nestjs?retryWrites=true&w=majority',
+      //process.env.MONGO_URI,
     ),
     AuthModule,
     ConfigModule.forRoot({
