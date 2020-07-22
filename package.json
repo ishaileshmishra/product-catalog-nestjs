@@ -29,7 +29,7 @@
     "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "bcrypt": "^5.0.0",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.2.0",
     "class-validator": "^0.12.2",
     "lodash": "^4.17.19",
     "mongoose": "^5.9.16",
