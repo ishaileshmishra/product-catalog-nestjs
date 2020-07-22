@@ -96,7 +96,8 @@ export class ProductsService {
       price: price,
       status: status,
     });
-    return await newProduct.save();
+    const result = await newProduct.save();
+    return result.id;
   }
 
   private async findProduct(id: string) {
