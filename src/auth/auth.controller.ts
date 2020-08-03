@@ -1,38 +1,42 @@
-import {
-  Controller,
-  Post,
-  Body,
-  ValidationPipe,
-  UseGuards,
-} from '@nestjs/common';
-import { AuthCredentialDTO } from './dto/auth.credential.dto';
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import { UserService } from 'src/shared/user.service';
+import { LoginDTO, RegisterDTO } from './auth.dto';
+//import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
-import { AuthGuard } from '@nestjs/passport';
-import { User } from './user.model';
-import { GetUser } from './get-user.decorator';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  //constructor(private readonly authService: AuthService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+  ) {}
 
-  @Post('/signup')
-  async signUp(
-    @Body(ValidationPipe) authCredentialDTO: AuthCredentialDTO,
-  ): Promise<void> {
-    //console.log(authCredentialDTO);
-    return await this.authService.signUp(authCredentialDTO);
+  @Get()
+  //@UseGaurds(AuthGuard('jwt'))
+  tempAuth() {
+    return { auth: 'works' };
   }
 
-  @Post('/login')
-  async signIn(
-    @Body(ValidationPipe) authCredentialDTO: AuthCredentialDTO,
-  ): Promise<{ accessToken: string }> {
-    return await this.authService.signIn(authCredentialDTO);
+  @Post('login')
+  async login(@Body() loginDTO: LoginDTO) {
+    const user = await this.userService.findByLogin(loginDTO);
+    const payload = {
+      username: user.username,
+      seller: user.seller,
+    };
+    const token = await this.authService.signPayload(payload);
+    return { user, token };
   }
 
-  @Post('/test')
-  @UseGuards(AuthGuard())
-  test(@GetUser() user: User) {
-    console.log(user);
+  @Post('register')
+  async register(@Body() registerDTO: RegisterDTO) {
+    const user = await this.userService.create(registerDTO);
+    const payload = {
+      username: user.username,
+      seller: user.seller,
+    };
+    const token = await this.authService.signPayload(payload);
+    return { user, token };
   }
 }
