@@ -4,64 +4,43 @@ import {
   Get,
   Post,
   Body,
-  Param,
-  Patch,
-  Delete,
-  UsePipes,
-  ValidationPipe,
   Query,
+  Param,
+  Put,
+  Delete,
 } from '@nestjs/common';
-
 import { ProductsService } from './products.service';
-import { ProductDto } from './dto/create.prooduct.dto';
-// import { User } from 'src/auth/user.model';
-// import { GetUser } from 'src/auth/get-user.decorator';
+import { CreateProductDto } from './dto/create.product.dto';
 
 @Controller('products')
 export class ProductController {
-  // [Example of Dependency injection]
-  // This is the instance of the ProductsService class in the contructor and it is Singleton in the nature.
-  // It's useful to access the functions from the ProductService class !
   constructor(private readonly productService: ProductsService) {}
 
-  @Get()
-  async getProducts(@Query() filterDTO: ProductDto) {
-    if (Object.keys(filterDTO).length) {
-      // Get Queries params using the decorator @Query
-      return await this.productService.getProductsWithFilters(filterDTO);
-    } else {
-      // Get all the products
-      return await this.productService.getProducts();
-    }
-  }
-
-  @Get('/:id')
-  async getProductById(@Param('id') prodId: string) {
-    return await this.productService.getProductById(prodId);
-  }
-
   @Post()
-  @UsePipes(ValidationPipe)
-  async createProduct(@Body() productDto: ProductDto) {
-    const productId = await this.productService.createProduct(productDto);
-    return { id: productId };
+  create(@Body() createCatDto: CreateProductDto) {
+    return 'This action adds a new cat';
   }
 
-  @Patch('/:id')
-  async updateProduct(
-    @Param('id') prodId: string,
-    @Body() productDto: ProductDto,
+  @Get()
+  findAll(@Query() query: CreateProductDto) {
+    return `This action returns all cats (limit: ${query.title} items)`;
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return `This action returns a #${id} cat`;
+  }
+
+  @Put(':id')
+  update(
+    @Param('title') title: string,
+    @Body() updateCatDto: CreateProductDto,
   ) {
-    const productId = await this.productService.updateProduct(
-      prodId,
-      productDto,
-    );
-    return productId;
+    return `This action updates a #${title} cat`;
   }
 
-  @Delete('/:id')
-  async deleteProduct(@Param('id') prodId: string) {
-    await this.productService.deleteProduct(prodId);
-    return null;
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return `This action removes a #${id} cat`;
   }
 }
