@@ -22,8 +22,9 @@ export class UserService {
     }
 
     const createdUser = new this.userModel(userDTO);
-    const result = await createdUser.save();
-    console.log(`result:  ${result}`);
+    console.log(`createdUser:  ${createdUser}`);
+    await createdUser.save();
+    console.log(`created:  ${createdUser._id}`);
     return this.sanitizeUser(createdUser);
   }
 

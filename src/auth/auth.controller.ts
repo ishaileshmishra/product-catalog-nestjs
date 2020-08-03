@@ -1,27 +1,20 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { UserService } from 'src/shared/user.service';
 import { LoginDTO, RegisterDTO } from './auth.dto';
-//import { AuthGuard } from '@nestjs/passport';
+import { Payload } from '../types/payload';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  //constructor(private readonly authService: AuthService) {}
   constructor(
     private userService: UserService,
     private authService: AuthService,
   ) {}
 
-  @Get()
-  //@UseGaurds(AuthGuard('jwt'))
-  tempAuth() {
-    return { auth: 'works' };
-  }
-
   @Post('login')
   async login(@Body() loginDTO: LoginDTO) {
     const user = await this.userService.findByLogin(loginDTO);
-    const payload = {
+    const payload: Payload = {
       username: user.username,
       seller: user.seller,
     };
@@ -32,9 +25,9 @@ export class AuthController {
   @Post('register')
   async register(@Body() registerDTO: RegisterDTO) {
     const user = await this.userService.create(registerDTO);
-    const payload = {
+    const payload: Payload = {
       username: user.username,
-      seller: user.seller,
+      seller: true,
     };
     const token = await this.authService.signPayload(payload);
     return { user, token };
