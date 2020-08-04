@@ -14,7 +14,7 @@ import { AuthService } from './auth/auth.service';
     ProductsModule,
     SharedModule,
     AuthModule,
-    MongooseModule.forRoot(config.MONGO_URL),
+    MongooseModule.forRoot(config.mongoURI),
     SharedModule,
   ],
   providers: [AppService, AuthService],

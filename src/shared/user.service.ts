@@ -21,14 +21,6 @@ export class UserService {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
     }
 
-    // try {
-    //   const createdUser = new this.userModel(userDTO);
-    //   console.log(`createdUser:  ${createdUser}`);
-    //   await createdUser.save();
-    //   console.log(`created:  ${createdUser._id}`);
-    // } catch (exception) {
-    //   console.log(` hamara exception: ${exception}`);
-    // }
     const createdUser = new this.userModel(userDTO);
     console.log(`createdUser:  ${createdUser}`);
     await createdUser.save();
