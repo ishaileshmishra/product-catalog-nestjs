@@ -27,7 +27,7 @@ export class AuthController {
     const user = await this.userService.create(registerDTO);
     const payload: Payload = {
       username: user.username,
-      seller: true,
+      seller: user.seller,
     };
     const token = await this.authService.signPayload(payload);
     return { user, token };
