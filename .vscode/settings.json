@@ -1,5 +1,6 @@
 {
     "editor.fontSize": 13,
     "editor.autoIndent": "advanced",
-    "editor.fontFamily": "Monaco"
+    "editor.fontFamily": "Monaco",
+    "compile-hero.disable-compile-files-on-did-save-code": true
 }
