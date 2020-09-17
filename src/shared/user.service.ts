@@ -22,21 +22,18 @@ export class UserService {
     }
 
     const createdUser = new this.userModel(userDTO);
-    console.log(`createdUser:  ${createdUser}`);
     await createdUser.save();
-    console.log(`created:  ${createdUser._id}`);
     return this.sanitizeUser(createdUser);
   }
 
   async findByLogin(userDTO: LoginDTO) {
     const { username, password } = userDTO;
-    console.log(`username is: ${username} and password is: ${password}`);
     const user = await this.userModel.findOne({ username });
-    console.log(`user foundOne: ${user}`);
     if (!user) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
 
+    console.log(`Got a user: ${user}`);
     if (await bcrypt.compare(password, user.password)) {
       console.log(`user found: ${user}`);
       const returnResult = this.sanitizeUser(user);
