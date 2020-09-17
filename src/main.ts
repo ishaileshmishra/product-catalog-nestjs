@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   //console.log(`Running on port : ${config.port}`);
   app.setGlobalPrefix('api');
-  // process.env.PORT
+  // process.env.PORT, It can be taken from the config file
   await app.listen(config.port);
 }
 bootstrap();
