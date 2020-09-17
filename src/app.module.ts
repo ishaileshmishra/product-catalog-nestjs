@@ -9,7 +9,6 @@ import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { AuthService } from './auth/auth.service';
 
-
 @Module({
   imports: [
     ProductsModule,

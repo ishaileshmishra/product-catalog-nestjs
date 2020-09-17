@@ -1,3 +1,6 @@
 {
-    "editor.fontSize": 16
+    "editor.fontSize": 14,
+    "editor.autoIndent": "advanced",
+    "editor.fontFamily": "Fira Code",
+    "compile-hero.disable-compile-files-on-did-save-code": true
 }

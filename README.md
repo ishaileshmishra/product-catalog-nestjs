@@ -106,13 +106,3 @@ install mongoose by running below command in your terminal in your project dir
 npm install --save mongoose @nestjs/mongoose
 npm install --save-dev @types/mongoose
 ```
-
-### See the terminal
-
-```bash
-#Run Below command to run the app on dev:
-
-> npm run start:dev
-```
-
-![Test Image 4](https://github.com/ishaileshmishra/product-catalog/blob/master/assets/output_terminal.png?raw=true)
