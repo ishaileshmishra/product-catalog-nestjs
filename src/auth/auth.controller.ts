@@ -32,6 +32,8 @@ export class AuthController {
   @Post('register')
   async register(@Body() registerDTO: RegisterDTO) {
     const user = await this.userService.create(registerDTO);
+    console.log(`recieved input from the user: ${registerDTO}`);
+    console.log(user);
     const payload: Payload = {
       username: user.username,
       seller: user.seller,

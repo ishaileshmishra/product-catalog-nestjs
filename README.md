@@ -15,7 +15,7 @@
 <a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
 <a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://twitter.com/ishailesmishr"><img src="https://img.shields.io/twitter/follow/ishailesmishra.svg?style=social&label=Follow"></a>
+<a href="https://twitter.com/ishailesh18"><img src="https://img.shields.io/twitter/follow/ishailesh18.svg?style=social&label=Follow"></a>
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
@@ -114,5 +114,3 @@ npm install --save-dev @types/mongoose
 
 > npm run start:dev
 ```
-
-![Test Image 4](https://github.com/ishaileshmishra/product-catalog/blob/master/assets/output_terminal.png?raw=true)

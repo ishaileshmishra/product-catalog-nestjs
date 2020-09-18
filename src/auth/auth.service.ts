@@ -6,10 +6,11 @@ import config from '../config/keys';
 
 @Injectable()
 export class AuthService {
+  
   constructor(private userService: UserService) {}
 
   async signPayload(payload: Payload) {
-    return sign(payload, config.SECRET_KEY, { expiresIn: '12h' });
+    return sign(payload, config.SECRET_KEY, {expiresIn: '12h'});
   }
 
   async validateUser(payload: Payload) {
