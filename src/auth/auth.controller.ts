@@ -19,8 +19,8 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() loginDTO: LoginDTO) {
-    const user = await this.userService.findByLogin(loginDTO);
+  async login(@Body() userDTO: LoginDTO) {
+    const user = await this.userService.findByLogin(userDTO);
     const payload: Payload = {
       username: user.username,
       seller: user.seller,
@@ -32,8 +32,6 @@ export class AuthController {
   @Post('register')
   async register(@Body() registerDTO: RegisterDTO) {
     const user = await this.userService.create(registerDTO);
-    console.log(`recieved input from the user: ${registerDTO}`);
-    console.log(user);
     const payload: Payload = {
       username: user.username,
       seller: user.seller,
