@@ -1,5 +1,5 @@
 {
     "editor.fontSize": 13,
     "editor.autoIndent": "advanced",
-    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace"
+    "editor.fontFamily": "Monaco, Menlo,'Courier New', monospace"
 }
